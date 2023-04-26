@@ -48,6 +48,19 @@ app.get("/compose", function(req, res){
 
 });
 
+app.get("/posts/:postTitle", function(req, res){
+
+
+  posts.forEach(function (post) {
+    if (post.title === req.params.postTitle){
+        console.log("Match found")
+    }
+  })
+
+  res.send(req.params.postTitle);
+
+});
+
 app.post("/compose", function(req,res){
   title = req.body.postTitle
   body = req.body.postBody
