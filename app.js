@@ -60,22 +60,26 @@ app.get("/posts/:postTitle", function(req, res){
     
     //check if they match, case INSENSITIVE because we turn both into lowercase (using lodash)
     if (_.toLower(storedPostTitle) === _.toLower(requestedPostTitle)){
-        console.log("Match found")
+        //render the post.ejs while passing the contents of that specific post!
+        res.render("post", {
+          post:posts[i],
+        });
+
         //using break because if match found, we want to get out of the loop
         break
     }
     //also check if they match, even if the url is written in kebabcase (another-post instead of Another Post) 
     else if (_.kebabCase(storedPostTitle) === _.toLower(requestedPostTitle)) {
-        console.log("Match found")
+        //render the post.ejs while passing the contents of that specific post!
+        res.render("post", {
+          post:posts[i],
+        });
+
         //using break because if match found, we want to get out of the loop
         break
     }
-    else{
-        console.log("Not a match.")
 
-    }
   }
-  res.send(req.params.postTitle);
 
 });
 
